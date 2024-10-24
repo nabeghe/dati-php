@@ -110,6 +110,57 @@ class DatiTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(60, (int) Dati::remaining('2024-10-19 23:00:00', '2024-10-20 00:00:00', 120, 'minutes'));
     }
 
+    public function testParseUnit()
+    {
+        $this->assertEquals([1, 'seconds'], Dati::parseUnit('1s'));
+        $this->assertEquals([1, 'seconds'], Dati::parseUnit('1S'));
+        $this->assertEquals([1, 'seconds'], Dati::parseUnit('1second'));
+        $this->assertEquals([1, 'seconds'], Dati::parseUnit('1seconds'));
+        $this->assertEquals([1, 'seconds'], Dati::parseUnit('1 seconds'));
+        $this->assertEquals([1, 'seconds'], Dati::parseUnit(' 1 seconds '));
+
+        $this->assertEquals([2, 'minutes'], Dati::parseUnit('2m'));
+        $this->assertEquals([2, 'minutes'], Dati::parseUnit('2min'));
+        $this->assertEquals([2, 'minutes'], Dati::parseUnit('2Min'));
+        $this->assertEquals([2, 'minutes'], Dati::parseUnit('2minutes'));
+        $this->assertEquals([2, 'minutes'], Dati::parseUnit('2 minutes'));
+        $this->assertEquals([2, 'minutes'], Dati::parseUnit(' 2 minutes '));
+
+        $this->assertEquals([3, 'hours'], Dati::parseUnit('3h'));
+        $this->assertEquals([3, 'hours'], Dati::parseUnit('3H'));
+        $this->assertEquals([3, 'hours'], Dati::parseUnit('3hour'));
+        $this->assertEquals([3, 'hours'], Dati::parseUnit('3hours'));
+        $this->assertEquals([3, 'hours'], Dati::parseUnit('3 hours'));
+        $this->assertEquals([3, 'hours'], Dati::parseUnit(' 3 hours '));
+
+        $this->assertEquals([4, 'days'], Dati::parseUnit('4d'));
+        $this->assertEquals([4, 'days'], Dati::parseUnit('4D'));
+        $this->assertEquals([4, 'days'], Dati::parseUnit('4day'));
+        $this->assertEquals([4, 'days'], Dati::parseUnit('4days'));
+        $this->assertEquals([4, 'days'], Dati::parseUnit('4 days'));
+        $this->assertEquals([4, 'days'], Dati::parseUnit(' 4 days '));
+
+        $this->assertEquals([5, 'weeks'], Dati::parseUnit('5w'));
+        $this->assertEquals([5, 'weeks'], Dati::parseUnit('5W'));
+        $this->assertEquals([5, 'weeks'], Dati::parseUnit('5week'));
+        $this->assertEquals([5, 'weeks'], Dati::parseUnit('5weeks'));
+        $this->assertEquals([5, 'weeks'], Dati::parseUnit('5 weeks'));
+        $this->assertEquals([5, 'weeks'], Dati::parseUnit(' 5 weeks '));
+
+        $this->assertEquals([6, 'months'], Dati::parseUnit('6M'));
+        $this->assertEquals([6, 'months'], Dati::parseUnit('6month'));
+        $this->assertEquals([6, 'months'], Dati::parseUnit('6months'));
+        $this->assertEquals([6, 'months'], Dati::parseUnit('6 months'));
+        $this->assertEquals([6, 'months'], Dati::parseUnit(' 6 months '));
+
+        $this->assertEquals([7, 'years'], Dati::parseUnit('7y'));
+        $this->assertEquals([7, 'years'], Dati::parseUnit('7Y'));
+        $this->assertEquals([7, 'years'], Dati::parseUnit('7year'));
+        $this->assertEquals([7, 'years'], Dati::parseUnit('7years'));
+        $this->assertEquals([7, 'years'], Dati::parseUnit('7 years'));
+        $this->assertEquals([7, 'years'], Dati::parseUnit(' 7 years '));
+    }
+
     public function testToJalali()
     {
         $this->assertSame('1374-08-29', Dati::toJalali("1995-11-20"));
