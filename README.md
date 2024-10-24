@@ -2,13 +2,18 @@
 
 > A simple DateTime helper for common stuff.
 
-Checking the validity of Gregorian and Jalali dates,  spam detection based on datetime sequences,
+Converting dates between the Gregorian and Jalali (Shamsi/Persian) calendars and vice versa,
+Checking the validity of Gregorian and Jalali dates,
+spam detection based on datetime sequences,
 detecting datetime formats,
 calculating the difference between two datetimes in a preferred unit or the largest possible unit,
 remaining time between two datetimes based on validity,
-checking for leap years in both Gregorian and Jalali calendars,  adding a value to a datetime,
+checking for leap years in both Gregorian and Jalali calendars,
+adding a value to a datetime,
 converting timezones to a desired or local one,
 month names, month lengths, current time, and so on!
+
+<b style="color: red">Notice:</b> To convert Gregorian dates to Jalali and vice versa, the `intl` extension must be enabled in PHP.
 
 <hr>
 
@@ -31,23 +36,36 @@ composer require nabeghe/dati
 ```php
 use Nabeghe\Dati\Dati;
 
+# Convert Gregorian to Jalali
+echo "To Jalali: ".Dati::toJalali('1995-11-20 00:00:00')."\n"; // 1374-08-29 00:00:00
+
+# Convert Jalali to Gregorian
+echo "To Jalali: ".Dati::fromJalali('1374-08-29 00:00:00')."\n"; // 1995-11-20 00:00:00
+
+# Detect Format:
 echo 'Format: '.Dati::detectFormat('1995-11-20 00:00:00')."\n"; // Y-m-d H:i:s
 
+# Difference between two datetimes:
 echo 'Diff 1: '.Dati::diff('1995-11-20 00:00:00', '1995-11-20 00:00:01')."\n"; // 1
 echo 'Diff 2: '.Dati::diff('1995-11-20 00:00:00', '1995-11-31 00:00:00', 'days')."\n"; // 11
 echo 'Diff 3: '.Dati::diff('1995-11-20 00:00:00', '1995-11-31 12:00:00', 'days')."\n"; // 11.5
 echo 'Diff 4: '.((int) Dati::diff('1995-11-20 00:00:00', '2024-10-19 22:58:00', 'years'))."\n"; // 28
 
+# Difference between two dates based on largest possible unit:
 echo "How Long Ago:\n";
 print_r(Dati::howLongAgo('2024-10-19 00:00:00', '2025-10-19 00:00:00'));
-// ['unit' => 'years', 'value' => 1, 'diff' => 31536000]
+// Output: ['unit' => 'years', 'value' => 1, 'diff' => 31536000]
 
+# Check leap Year
 echo Dati::isLeap(2024) ? "isLeap\n" : "not isLeap\n";
+echo Dati::isLeap(1403, true) ? "isLeap\n" : "not isLeap\n";
 
+# Join a value to datetime:
 echo 'Join 1: '.Dati::join('+1', 'seconds', '1995-11-20 00:00:00')."\n"; // 1995-11-20 00:00:01
 echo 'Join 2: '.Dati::join('+2', 'seconds', '1995-11-20 00:00:00')."\n"; // 1995-11-20 00:00:02
 echo 'Join 3: '.Dati::join('+1', 'month', '1995-11-20 00:00:00')."\n"; // 1995-12-20 00:00:00
 
+# Remaining value until expiration! Suitable for things like premium subscriptions that have validity:
 echo 'Remaining 1: '.Dati::remaining('2024-10-19 23:00:00', '2024-10-20 00:00:00', 60, 'minutes')."\n"; // 0
 echo 'Remaining 2: '.((int) Dati::remaining('2024-10-19 23:00:00', '2024-10-20 00:00:00', 120, 'minutes'))."\n"; // 60
 ```

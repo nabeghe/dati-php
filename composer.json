@@ -3,10 +3,10 @@
   "description": "A simple DateTime helper for common stuff.",
   "keywords": [
     "datetime", "date", "time", "datetime helper", "datetime utils", "helper", "utils", "support", "library",
-    "calendar"
+    "calendar", "datetime convert", "jalali", "shamsi", "gregorian", "gregorian to jalali", "jalali to gregorian"
   ],
   "type": "library",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/nabeghe/dati-php",
   "license": "MIT",
   "autoload": {
@@ -23,7 +23,8 @@
     }
   ],
   "require": {
-    "php": ">=7.4"
+    "php": ">=7.4",
+    "ext-intl": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "9.6"

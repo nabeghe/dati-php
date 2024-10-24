@@ -70,6 +70,14 @@ class DatiTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(28, (int) Dati::diff('1995-11-20 00:00:00', '2024-10-19 22:58:00', 'years'));
     }
 
+    public function testFromJalali()
+    {
+        $this->assertSame('1995-11-20', Dati::fromJalali("1374-08-29"));
+        $this->assertSame('1995-11-20 00:00:00', Dati::fromJalali("1374-08-29 00:00:00"));
+        $this->assertSame('2024-11-20', Dati::fromJalali("1403-08-30"));
+        $this->assertSame('2024-11-20 00:00:00', Dati::fromJalali("1403-08-30 00:00:00"));
+    }
+
     public function testHowLongAgo()
     {
         $this->assertEquals(
@@ -100,5 +108,13 @@ class DatiTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertEquals(0, Dati::remaining('2024-10-19 23:00:00', '2024-10-20 00:00:00', 60, 'minutes'));
         $this->assertEquals(60, (int) Dati::remaining('2024-10-19 23:00:00', '2024-10-20 00:00:00', 120, 'minutes'));
+    }
+
+    public function testToJalali()
+    {
+        $this->assertSame('1374-08-29', Dati::toJalali("1995-11-20"));
+        $this->assertSame('1374-08-29 00:00:00', Dati::toJalali("1995-11-20 00:00:00"));
+        $this->assertSame('1403-08-30', Dati::toJalali("2024-11-20"));
+        $this->assertSame('1403-08-30 00:00:00', Dati::toJalali("2024-11-20 00:00:00"));
     }
 }
