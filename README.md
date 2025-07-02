@@ -15,8 +15,6 @@ month names, month lengths, current time, and so on!
 
 <b style="color: red">Notice:</b> To convert Gregorian dates to Jalali and vice versa, the `intl` extension must be enabled in PHP.
 
-<hr>
-
 ## 🫡 Usage
 
 ### 🚀 Installation
@@ -26,8 +24,6 @@ You can install the package via composer:
 ```bash
 composer require nabeghe/dati
 ```
-
-<hr>
 
 ### Dati Class
 
@@ -140,8 +136,6 @@ if (!Dati::checkSpam([
 }
 ```
 
-<hr>
-
 ### Months Class
 
 Access to the names and lengths of the months in the Gregorian, Jalali, and lunar calendars.
@@ -189,10 +183,6 @@ echo "Now (GMT): " . Now::datetime() . "\n"; // 1995-11-20 00:00:00
 echo "Now (Local): " . Now::datetimeLocal() . "\n"; // 1995-11-20 13:14:00
 ```
 
-<hr>
-
 ## 📖 License
-
-Copyright (c) Hadi Akbarzadeh
 
 Licensed under the MIT license, see [LICENSE.md](LICENSE.md) for details.

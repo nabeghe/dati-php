@@ -1,26 +1,23 @@
 {
   "name": "nabeghe/dati",
   "description": "A simple DateTime helper for common stuff.",
-  "keywords": [
-    "datetime", "date", "time", "datetime helper", "datetime utils", "helper", "utils", "support", "library",
-    "calendar", "datetime convert", "jalali", "shamsi", "gregorian", "gregorian to jalali", "jalali to gregorian"
-  ],
+  "keywords": ["calendar", "date", "datetime", "datetime convert", "datetime helper", "datetime utils", "gregorian", "gregorian to jalali", "helper", "jalali", "jalali to gregorian", "library", "shamsi", "support", "time", "utils"],
   "type": "library",
   "homepage": "https://github.com/nabeghe/dati-php",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Hadi Akbarzadeh",
+      "email": "elsiomcoder@gmail.com",
+      "homepage": "https://elatel.ir",
+      "role": "Developer"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Nabeghe\\Dati\\": "src/"
     }
   },
-  "authors": [
-    {
-      "name": "Hadi Akbarzadeh",
-      "email": "hadicoder@gmail.com",
-      "homepage": "https://elatel.ir",
-      "role": "Developer"
-    }
-  ],
   "require": {
     "php": ">=7.4",
     "ext-intl": "*"
