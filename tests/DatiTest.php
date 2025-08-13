@@ -168,4 +168,13 @@ class DatiTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('1403-08-30', Dati::toJalali("2024-11-20"));
         $this->assertSame('1403-08-30 00:00:00', Dati::toJalali("2024-11-20 00:00:00"));
     }
+
+    public function testTimeZoneDisplayName()
+    {
+        $this->assertNotNull(Dati::getTimeZoneDisplayName('fa', 'Asia/Tehran'));
+        $this->assertNotNull(Dati::getTimeZoneDisplayName('en', 'Europe/Berlin'));
+        $this->assertNotNull(Dati::getTimeZoneDisplayName());
+        $this->assertNull(Dati::getTimeZoneDisplayName('MeowWw'));
+        $this->assertNull(Dati::getTimeZoneDisplayName('fa', 'MeowWw'));
+    }
 }
